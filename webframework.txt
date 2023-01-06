@@ -1,0 +1,589 @@
+1) Create an HTML form that contain the Student Registration details and write a
+JavaScript to validate Student first and last name as it should not contain other than
+alphabets and age should be between 18 to 50
+----> ass1.html
+<html>
+<head>
+    <script type="text/javascript" src="assign11.js">
+    
+   </script>
+    <title>Document</title>
+</head>
+<body bgcolor="aqua">
+    <h1 style="text-align: left"> REGISTRATION FORM </h1>           
+<form name="RegForm" action="#"  method="post" >  
+      
+    <p>First Name: <input type="text" size=40 name="FName"> </p><br>  
+    <p>Last Name: <input type="text" size=40 name="LName"> </p><br>  
+    <p>Age :      <input type="text" size="40" name="Age"></p>  <br>   
+   <p> Address:  <input type="text" size=40 name="Address">  </p><br> 
+    <p>Telephone: <input type="text" size=40 name="Telephone"> </p><br>  
+           
+    <p>SELECT YOUR COURSE    
+        <select type="text" value="" name="Subject"> 
+            <option>BTECH</option> 
+            <option>BBA</option> 
+            <option>BCA</option> 
+            <option>B.COM</option> 
+            <option>BCS</option> 
+        </select></p><br><br> 
+    <p>Comments:  <textarea cols="55" name="Comment">  </textarea></p> 
+    <p><input type="submit" value="submit" name="Submit" onclick="validate()"/>      
+        <input type="reset" value="Reset" name="Reset"/>   
+    </p>          
+</form> 
+</body>
+</html>
+
+----> ass1.js
+function validate()                                    
+{  
+    var fname = document.RegForm.FName; 
+    var lname = document.RegForm.LName;  
+    var age =document.RegForm.Age;               
+    var phone = document.RegForm.Telephone;  
+    var what =  document.RegForm.Subject;  
+    var address = document.RegForm.Address;  
+  function allLetter()
+{ 
+var letters = /^[A-Za-z]+$/;
+//if(letters.test(fname.value))
+if(fname.value.match(letters))
+{
+    fname.focus();
+    return true;
+}
+else{
+fname.focus();
+return false;
+}
+}
+function allNumeric() 
+ {
+    var num= /^[0-9]{10}$/;
+    if(num.test(phone.value))
+    {
+        phone.focus();
+        return true;
+    }
+        else
+        {
+        return false;
+    }
+    
+}  
+if(!allLetter())
+{
+    alert('Username must have alphabet characters only');
+ }
+ if(!allNumeric())
+ window.alert("Enter correct number");
+    if(age.value < 18 || age.value > 50)
+    { 
+        
+        window.alert("Please enter correct age."); 
+        age.focus(); 
+        return false; 
+    }
+   
+   if (address.value == "")                               
+    { 
+        window.alert("Please enter your address."); 
+        address.focus(); 
+        return false; 
+    } 
+}
+
+2)Create an HTML form that contain the Employee Registration details and writea
+JavaScript to validate DOB, Joining Date, and Salary.
+---->ass2.html
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Employee Registration Form</title>
+<script src="assignment2.js"></script>
+</head>
+<body>  
+    <table border="1" align="center">
+    <tr><td>
+    <form action="#" name="empform" onsubmit="return(validate());">
+        <font size="4"><b>
+    
+        <h1>
+            Employee Registration Form
+       </h1>
+       <pre>
+     <ul>
+     <li>First Name:    <input type="text" name="fname" ></li>
+     <li>Last Name:     <input type="text" name="lname"></li>
+     <li>DOB:           <input type="text" name="dob">format: DD-MM-YYYY</li>
+     <li>Joining Date:  <input type="text" name="jdate">format:DD-MM-YYYY</li>
+     <li>Salary:        <input type="text" name="salary"> </li>
+     <li>Job Location:       <select name="Location">
+         <option value="-1" selected>section location</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Chennai">Pune</option>
+        <option value="Bangalore">Mysore</option>
+        <option value="Chennai">Chandigarh</option>
+         
+        </select></li>
+       <li> Designation:  <select name="designation">
+           <option value="-1" selected>select Designation</option>
+            <option value="Systems Engineer">Systems Engineer</option>
+            <option value="Senior Systems Engineer">Senior Systems Engineer</option>
+            <option value="Technology Analyst">Technology Analyst</option>
+            <option value="Technology Lead">Technology Lead</option>
+            <option value="Project Manager">Project Manager</option>
+         </select> </li>   
+        <li><input type="submit" value ="Submit">  <input type="reset" value ="Reset"></li>
+    </ul>
+    </pre>
+</b></font>
+    
+
+</td></tr>
+    </table>           
+</body>
+</html>
+
+ ---->ass2.js
+function validate()
+{
+    var fname=document.empform.fname.value;
+    var lname=document.empform.lname.value;
+    var dob=document.empform.dob.value;
+    var jdate=document.empform.jdate.value;
+    var salary=document.empform.salary.value;
+
+    
+    var NPattern = /^[a-zA-Z]+$/;
+    var dobPattern= /^([0-9]{1,2})([-/.])+([0-9]{1,2})([-/.])+([0-9]{4})$/;
+    var JdatePattern= /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
+    var salaryPattern=/^[0-9]+$/;
+    
+    if(!NPattern.test(fname)){
+        alert('Please Enter valid FirstName');
+        return false;
+    }  
+   
+    if(!NPattern.test(lname)){
+      alert('Please Enter valid LastName');
+      return false;
+    }  
+ 
+    
+    if (!dobPattern.test(dob)) {
+        alert("Invalid date of birth");
+        return false;
+    }
+    if (!JdatePattern.test(jdate)) {
+        alert("Invalid date of Joining");
+        return false;
+    }
+    if(salary=="")
+    {
+      alert("Salary Required");
+      return false;
+    }
+    if(!salaryPattern.test(salary))
+    {
+      alert("Salary Must be in digits)");
+      return false;
+      }
+     
+    
+}
+
+3)Create an HTML form for Login and write a JavaScript to validate email ID
+using Regular Expression
+--->ass3.html
+<html>
+<head>  
+</head>
+<body>
+<h2>Input an email and Submit</h2>
+<form name="form1"> 
+<ul>
+<li><input type='email' name='text1' id="email"/></li>
+&nbsp;
+<li><input type="submit" name="submit" value="Submit" onclick="ValidateEmail()"/></li>
+&nbsp;
+</ul>
+</form>
+<script src="assign3.js"></script>
+</body>
+</html>
+
+--->ass3.js
+function ValidateEmail()
+{
+var mailformat = document.getElementById('email').value;
+var pattern=/^[a-zA-Z0-9._]+@[a-zA-Z0-9._]+\.[a-zA-Z]{2,3}$/;
+// /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(pattern.test(mailformat))
+{
+    alert("welcome");
+return true;
+}
+else
+{
+alert("You have entered an invalid email address!");
+return false;
+}
+}
+
+4)Create a Node.js file that will convert the output "Hello World!" into upper-case
+letters.
+---->ass4.html
+<html>
+<body>
+
+<p>Click the button to convert the string to uppercase letters.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var str = "Hello World!";
+  var res = str.toUpperCase();
+  document.getElementById("demo").innerHTML = res;
+}
+</script>
+
+</body>
+</html>
+
+5)Using nodejs create a web page to read two file names from user and append contents
+of first file into second file.
+---->ass5.html
+<html>
+<head><h2>Append contents of first file into second file</h2>
+    <title>Document</title>
+    <script type="text/javascript" src='ass5.js'>
+    </script>
+</head>
+<body>
+
+    <table border="1">
+    <form name="form1" actio=# onsubmit="return validateFile();">
+      <tr><td> Enter First File: <input type="text" name="file1" id="file_1"><br></td></tr> 
+        &nbsp;
+       <tr><td>Enter second File:<input type="text" name="file2" id="file_2"><br></td></tr> 
+       &nbsp;
+       <tr><td><input type="button" name="Append" value="Append"></td></tr> 
+    </form>
+    </table>
+    
+</body>
+</html>
+---->ass5.js
+function validateFile(){
+    var file1= document.getElementById("file_1").value;
+    var file2 = document.getElementById("'file_2").value;
+var fs = require('fs');
+    fs.open('file1', 'r+', function (err, fd) {
+        if (err) { return console.error(err);     
+       }
+
+        var buffr = new Buffer.alloc(24); 
+       fs.read(fd, buffr, 0, buffr.length, 0, function (err, bytes) {
+            if (err) throw err;
+           console.log(buffr.toString()); 
+        }); 
+        
+fs.appendFile('file2', buffr, function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+  fs.close(fd, function (err) { if (err) throw err; }); 
+});
+
+});
+    //});
+}
+
+6)Create a Node.js file that opens the requested file and returns the content to the client.
+If anything goes wrong, throw a 404 error. 
+---->ass6.js
+var http=require('http');
+var url= require('url');
+var fs= require('fs');
+http.createServer(function(req,res){
+
+var p= url.parse(req.url,true);
+var filename="."+p.pathname;
+console.log('file received'+filename);
+fs.readFile(filename,function(err,data){
+    if(err)
+    {
+        res.writeHead(404,{'content-type':'text/html'});
+        res.end('404 page Not found');
+    }
+    else
+    {
+        res.writeHead(200,{'content-type':'text/html'});
+        res.write(data);
+        res.end();
+
+    }
+});
+
+}).listen(8000);
+
+7)Create a Node.js file that writes an HTML form, with an upload field.
+--->upload.js
+var http = require('http');
+var formidable = require('formidable');
+var fs = require('fs');
+
+http.createServer(function (req, res) {
+  if (req.url == '/fileupload') {
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      var oldpath = files.filetoupload.filepath;
+      var newpath = 'C:/Users/mahes/Downloads/' + files.filetoupload.originalFilename;
+      fs.rename(oldpath, newpath, function (err) {
+        if (err) throw err;
+        res.write('File uploaded and moved!');
+        res.end();
+      });
+ });
+  } else {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
+  }
+
+8)Create a Node.js file that demonstrates create database and table in MySQL.
+---->db.js
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "yourusername",
+  password: "yourpassword",
+  database: "mydb"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table created");
+  });
+});
+
+// node demo_create_table.js
+
+9)Create a node.js file that Select all records from the "customers" table, and display the
+result object on console.
+--->customer.js
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "yourusername",
+  password: "yourpassword",
+  database: "mydb"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  con.query("SELECT * FROM customers", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
+});
+
+// node demo_db_select.js
+
+10)Create a node.js file that Insert Multiple Records in "student" table, and display the
+result object on console
+--->student.js
+// include mysql module
+var mysql = require('mysql');
+ 
+// create a connection variable with the required details
+var con = mysql.createConnection({
+  host: "localhost",    // ip address of server running mysql
+  user: "root",    // user name to your mysql database
+  password: "", // corresponding password
+  database: "students" // use the specified database
+});
+ 
+// make to connection to the database.
+con.connect(function(err) {
+  if (err) throw err;
+  // if connection is successful
+  var records = [
+    ['Mahesh', 13, 85],
+    ['kaivalya', 14, 87],
+    ['Nilesh', 15, 74]
+  ];
+  con.query("INSERT INTO students (name,rollno,marks) VALUES ?", [records], function (err, result, fields) {
+    // if any error while executing above query, throw error
+    if (err) throw err;
+    // if there is no error, you have the result
+    console.log(result);
+  });
+});
+
+11)Create a node.js file that Select all records from the "customers" table, and delete the
+specified record.
+--->delete.js
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "yourusername",
+  password: "yourpassword",
+  database: "mydb"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Number of records deleted: " + result.affectedRows);
+  });
+});
+
+// node demo_db_delete.js
+
+12)Create a Simple Web Server using node js. 
+--->server.js
+var http =require('http');
+var url =require('url');
+http.createServer(function(req,res){
+    res.writeHead(200,{'content-type':'text/html'});
+res.write(req.url);
+res.end();
+}).listen(5000);
+
+// node server.js
+
+13)Using node js create a User Login System.
+--->app.js
+const express = require('express');
+const http = require('http');
+const bcrypt = require('bcrypt');
+const path = require("path");
+const bodyParser = require('body-parser');
+const users = require('./data').userDB;
+
+const app = express();
+const server = http.createServer(app);
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname,'./public')));
+
+
+app.get('/',(req,res) => {
+    res.sendFile(path.join(__dirname,'./public/index.html'));
+});
+
+
+app.post('/register', async (req, res) => {
+    try{
+        let foundUser = users.find((data) => req.body.email === data.email);
+        if (!foundUser) {
+    
+            let hashPassword = await bcrypt.hash(req.body.password, 10);
+    
+            let newUser = {
+                id: Date.now(),
+                username: req.body.username,
+                email: req.body.email,
+                password: hashPassword,
+            };
+            users.push(newUser);
+            console.log('User list', users);
+    
+            res.send("<div align ='center'><h2>Registration successful</h2></div><br><br><div align='center'><a href='./login.html'>login</a></div><br><br><div align='center'><a href='./registration.html'>Register another user</a></div>");
+        } else {
+            res.send("<div align ='center'><h2>Email already used</h2></div><br><br><div align='center'><a href='./registration.html'>Register again</a></div>");
+        }
+    } catch{
+        res.send("Internal server error");
+    }
+});
+
+app.post('/login', async (req, res) => {
+    try{
+        let foundUser = users.find((data) => req.body.email === data.email);
+        if (foundUser) {
+    
+            let submittedPass = req.body.password; 
+            let storedPass = foundUser.password; 
+    
+            const passwordMatch = await bcrypt.compare(submittedPass, storedPass);
+            if (passwordMatch) {
+                let usrname = foundUser.username;
+                res.send(`<div align ='center'><h2>login successful</h2></div><br><br><br><div align ='center'><h3>Hello ${usrname}</h3></div><br><br><div align='center'><a href='./login.html'>logout</a></div>`);
+            } else {
+                res.send("<div align ='center'><h2>Invalid email or password</h2></div><br><br><div align ='center'><a href='./login.html'>login again</a></div>");
+            }
+        }
+        else {
+    
+            let fakePass = `$2b$$10$ifgfgfgfgfgfgfggfgfgfggggfgfgfga`;
+            await bcrypt.compare(req.body.password, fakePass);
+    
+            res.send("<div align ='center'><h2>Invalid email or password</h2></div><br><br><div align='center'><a href='./login.html'>login again<a><div>");
+        }
+    } catch{
+        res.send("Internal server error");
+    }
+});
+
+
+server.listen(3000, function(){
+    console.log("server is listening on port: 3000");
+});
+--->data.js
+const userDB = [];
+  
+module.exports = { userDB };
+
+14)Write node js script to interact with the filesystem, and serve a web page from a file .
+--->file.js
+var http = require('http');
+var fs = require('fs');
+http.createServer(function (req, res) {
+    fs.readFile('index.html', function(err, data) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        return res.end();
+  });
+}).listen(8080);
+
+// node file.js
+// http://localhost:8080/
+--->index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mahesh Here</h1>
+</body>
+</html>
+
+
+
+
